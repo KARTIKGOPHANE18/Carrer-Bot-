@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>CareerBot</title>
+    <style>
+        body { font-family: Arial; background:#111; color:white; }
+        #chat { width: 60%; margin: auto; }
+        input, button { padding:10px; width:80%; }
+    </style>
+</head>
+<body>
+    <div id="chat">
+        <h2>CareerBot – AI Career Assistant</h2>
+        <div id="messages"></div>
+        <input id="msg" placeholder="Type your message...">
+        <button onclick="send()">Send</button>
+    </div>
+
+<script>
+async function send() {
+    let msg = document.getElementById("msg").value;
+    let res = await fetch("/chat", {
+        method: "POST",
+        headers: {"Content-Type": "application/json"},
+        body: JSON.stringify({message: msg})
+    });
+    let data = await res.json();
+    document.getElementById("messages").innerHTML += 
+        "<p><b>You:</b> " + msg + "</p>" +
+        "<p><b>Bot:</b> " + data.reply + "</p>";
+}
+</script>
+</body>
+</html>
+
