@@ -1,35 +1,28 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>CareerBot</title>
-    <style>
-        body { font-family: Arial; background:#111; color:white; }
-        #chat { width: 60%; margin: auto; }
-        input, button { padding:10px; width:80%; }
-    </style>
+    <meta charset="UTF-8">
+    <title>CareerBot – AI Career Assistant</title>
+    <link rel="stylesheet" href="/static/style.css">
 </head>
 <body>
-    <div id="chat">
-        <h2>CareerBot – AI Career Assistant</h2>
-        <div id="messages"></div>
-        <input id="msg" placeholder="Type your message...">
-        <button onclick="send()">Send</button>
+
+<div class="chat-container">
+    <h1>🤖 CareerBot</h1>
+
+    <div id="chat-box">
+        <div class="bot-message">
+            Hi! 👋 I’m your AI Career Assistant. Ask me anything about careers.
+        </div>
     </div>
 
-<script>
-async function send() {
-    let msg = document.getElementById("msg").value;
-    let res = await fetch("/chat", {
-        method: "POST",
-        headers: {"Content-Type": "application/json"},
-        body: JSON.stringify({message: msg})
-    });
-    let data = await res.json();
-    document.getElementById("messages").innerHTML += 
-        "<p><b>You:</b> " + msg + "</p>" +
-        "<p><b>Bot:</b> " + data.reply + "</p>";
-}
-</script>
+    <div class="input-area">
+        <input type="text" id="user-input" placeholder="Type your message..." />
+        <button onclick="sendMessage()">Send</button>
+    </div>
+</div>
+
+<script src="/static/script.js"></script>
 </body>
 </html>
 
