@@ -2,7 +2,9 @@ from google import genai
 import os
 
 # 🔐 Put your API key here
-API_KEY = "AIzaSyC-QB7lBQeLMpV5fZOlQLGDE3YxpHph3_8"
+API_KEY = os.getenv("GOOGLE_API_KEY")
+if not API_KEY :
+	raise ValueError("GOOGLE_API_KEY not found")
 
 # Create client
 client = genai.Client(api_key=API_KEY)
